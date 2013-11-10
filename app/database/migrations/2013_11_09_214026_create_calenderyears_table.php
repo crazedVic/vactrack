@@ -14,8 +14,8 @@ class CreateCalenderyearsTable extends Migration {
 		//create Employee table
 		Schema::create('calendar_years',function($table){
 			$table->increments('id');
-			$table->integer('active');
-			$table->integer('year');
+			$table->boolean('active')->default(1);
+			$table->integer('year')->unique();
 			$table->timestamps();
 		});
 	}

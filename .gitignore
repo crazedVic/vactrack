@@ -1,4 +1,9 @@
 /bootstrap/compiled.php
+# assuming the root folder you want to ignore is 'application'
+vendor/**/*
+# the subfolder(s) you want to track:
+!vendor/way/
+# the rest
 composer.phar
 composer.lock
 .DS_Store

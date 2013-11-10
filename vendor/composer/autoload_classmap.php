@@ -7,9 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
-    'CreateJobsTable' => $baseDir . '/app/database/migrations/2013_11_03_071912_create_jobs_table.php',
-    'CreateUserTable' => $baseDir . '/app/database/migrations/2013_11_03_064204_create_user_table.php',
+    'CreateBankeddaysTable' => $baseDir . '/app/database/migrations/2013_11_10_010647_create_bankeddays_table.php',
+    'CreateCalenderyearsTable' => $baseDir . '/app/database/migrations/2013_11_09_214026_create_calenderyears_table.php',
+    'CreateCarryoverDaysTable' => $baseDir . '/app/database/migrations/2013_11_10_011244_create_carryover_days_table.php',
+    'CreateEmployeesTable' => $baseDir . '/app/database/migrations/2013_11_09_202117_create_employees_table.php',
+    'CreateRatesTable' => $baseDir . '/app/database/migrations/2013_11_09_205726_create_rates_table.php',
+    'CreateSickdaysTable' => $baseDir . '/app/database/migrations/2013_11_10_011017_create_sickdays_table.php',
+    'CreateVacationTable' => $baseDir . '/app/database/migrations/2013_11_10_010042_create_vacation_table.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
+    'EmployeesTableSeeder' => $baseDir . '/app/database/seeds/EmployeesTableSeeder.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',

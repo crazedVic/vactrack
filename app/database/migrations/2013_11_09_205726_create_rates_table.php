@@ -13,12 +13,12 @@ class CreateRatesTable extends Migration {
 	{
 		Schema::create('rates',function($table){
 			$table->increments('id');
-			//foreign key id fields should always be unsignedinteger
-			$table->unsignedinteger('employee_id');
+			//foreign key id fields should always be unsigned integer
+			$table->integer('employee_id')->unsigned();
 			$table->foreign('employee_id')->references('id')->on('employees');	
 			$table->date('startdate');
-			$table->date('enddate');
-			$table->float('DaysPerAnnum');
+			$table->date('enddate')->nullable();
+			$table->float('DaysPerAnnum')->default(10);
 			$table->timestamps();
 		});
 	}

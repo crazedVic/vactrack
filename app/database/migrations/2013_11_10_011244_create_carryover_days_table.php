@@ -14,12 +14,12 @@ class CreateCarryoverDaysTable extends Migration {
 		Schema::create('carryover_days',function($table){
 			$table->increments('id');
 			//foreign key id fields should always be unsignedinteger
-			$table->unsignedinteger('employee_id');
+			$table->integer('employee_id')->unsigned();
 			$table->foreign('employee_id')->references('id')->on('employees');
-			$table->unsignedinteger('calendar_year_id');
+			$table->integer('calendar_year_id')->unsigned();
 			$table->foreign('calendar_year_id')->references('id')->on('calendar_years');	
 			$table->float('days');
-			$table->string('description');
+			$table->string('description')->default('');
 			$table->timestamps();
 		});	
 	}

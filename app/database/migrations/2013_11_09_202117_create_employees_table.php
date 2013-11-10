@@ -16,8 +16,8 @@ class CreateEmployeesTable extends Migration {
 			$table->increments('id');
 			$table->string('name')->unique();
 			$table->date('hiredate');
-			$table->date('terminationdate');
-			$table->integer('probationMonths');
+			$table->date('terminationdate')->nullable();
+			$table->integer('probationMonths')->default(6);
 			$table->timestamps();
 		});
 	}
