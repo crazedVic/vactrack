@@ -1,4 +1,5 @@
 /bootstrap/compiled.php
+/public/phpmyadmin/
 # assuming the root folder you want to ignore is 'application'
 vendor/**/*
 # the subfolder(s) you want to track:
