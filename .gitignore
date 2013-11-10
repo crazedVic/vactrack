@@ -1,9 +1,9 @@
 /bootstrap/compiled.php
 /public/phpmyadmin/
 # assuming the root folder you want to ignore is 'application'
-/vendor/**/*
+vendor/*
 # the subfolder(s) you want to track:
-!/vendor/way/
+!vendor/way/
 # the rest
 composer.phar
 composer.lock
