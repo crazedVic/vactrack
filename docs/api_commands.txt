@@ -1,1 +1,40 @@
 Try to design my REST API here.
+
+will have 2 entry points - all and admin
+
+admin will require admin role login
+
+{year} - filters out non-active employees
+{id} 
+
+[GET]   /v1/all/employees/id
+[GET]   /v1/all/vacation/year/id
+[GET]   /v1/all/bankedtime/year/id
+[GET]   /v1/all/sick/year/id
+[GET]   /v1/all/carryover/year/id  **we may want to just bundle this data in with employee get
+
+[GET]   /v1/admin/employees/year
+[GET]   /v1/admin/employees/id
+
+[POST]  /v1/all/vacation
+
+[POST]  /v1/admin/bankedtime
+[POST]  /v1/admin/sick
+[POST]  /v1/admin/employee
+[POST]  /v1/admin/carryover
+
+[PUT]   /v1/all/vacation
+
+[PUT]   /v1/admin/bankedtime
+[PUT]   /v1/admin/employee
+[PUT]   /v1/admin/sick
+[PUT]   /v1/admin/carryover
+
+[DELETE] /v1/all/vacation
+
+[DELETE] /v1/admin/employee
+[DELETE] /v1/admin/bankedtime
+[DELETE] /v1/admin/sick
+[DELETE] /v1/admin/carryover
+
+
