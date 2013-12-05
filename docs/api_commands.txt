@@ -8,7 +8,7 @@ admin will require admin role login
 {id} 
 
 [GET]   /v1/all/employees/id
-[GET]   /v1/all/vacation/year/id
+[GET]   /v1/all/vacation/year/id or do we do /v1/all/employees/id/vacation
 [GET]   /v1/all/bankedtime/year/id
 [GET]   /v1/all/sick/year/id
 [GET]   /v1/all/carryover/year/id  **we may want to just bundle this data in with employee get
