@@ -4,6 +4,8 @@ then you need to clone the repo "git clone url"
 
 then you can go into it and type "git status" to see if it's all good
 
+looks like "git status" doesn't detect changed files on the server, not sure how to do this yet.
+
 then you add new files, and add them "git add ."
 
 then you commit to local, 'git commit -m "add comment"'
