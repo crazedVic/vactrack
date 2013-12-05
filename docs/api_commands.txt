@@ -1,40 +1,36 @@
 Try to design my REST API here.
 
-will have 2 entry points - all and admin
+will have 2 roles so not all calls will be available to all users
+will need to return the proper HTTP error codes when access is denied
 
-admin will require admin role login
+Since year is crucial to operations we may wish to insert the year between /v1/2012/employees
 
-{year} - filters out non-active employees
-{id} 
+[GET]   /v1/employees/id
+[GET]   /v1/employees/id/vacation
+[GET]   /v1/employees/id/vacation/id
+[GET]   /v1/employees/id/bankedtime
+[GET]   /v1/employees/id/bankedtime/id
+[GET]   /v1/employees/id/sick
+[GET]   /v1/employees/id/sick/id
+[GET]   /v1/employees/id/carryover
+[GET]   /v1/employees/id/carryover/id
 
-[GET]   /v1/all/employees/id
-[GET]   /v1/all/vacation/year/id or do we do /v1/all/employees/id/vacation
-[GET]   /v1/all/bankedtime/year/id
-[GET]   /v1/all/sick/year/id
-[GET]   /v1/all/carryover/year/id  **we may want to just bundle this data in with employee get
+[POST]  /v1/employees
+[POST]  /v1/employees/id/vacation
+[POST]  /v1/employees/id/bankedtime
+[POST]  /v1/employees/id/sick
+[POST]  /v1/employees/id/carryover
 
-[GET]   /v1/admin/employees/year
-[GET]   /v1/admin/employees/id
+[PUT]   /v1/employees/id
+[PUT]   /v1/employees/id/bankedtime/id
+[PUT]   /v1/employees/id/vacation/id
+[PUT]   /v1/employees/id/sick/id
+[PUT]   /v1/employees/id/carryover/id
 
-[POST]  /v1/all/vacation
-
-[POST]  /v1/admin/bankedtime
-[POST]  /v1/admin/sick
-[POST]  /v1/admin/employee
-[POST]  /v1/admin/carryover
-
-[PUT]   /v1/all/vacation
-
-[PUT]   /v1/admin/bankedtime
-[PUT]   /v1/admin/employee
-[PUT]   /v1/admin/sick
-[PUT]   /v1/admin/carryover
-
-[DELETE] /v1/all/vacation
-
-[DELETE] /v1/admin/employee
-[DELETE] /v1/admin/bankedtime
-[DELETE] /v1/admin/sick
-[DELETE] /v1/admin/carryover
+[DELETE] /v1/employees/id
+[DELETE] /v1/employees/id/vacation/id
+[DELETE] /v1/employees/id/bankedtime/id
+[DELETE] /v1/employees/id/sick/id
+[DELETE] /v1/employees/id/carryover/id
 
 
