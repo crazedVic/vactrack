@@ -11,3 +11,5 @@ then you commit to local, 'git commit -m "add comment"'
 then you push to server, "git push", and you'll be prompted to login
 
 then you can pull down changes, "git pull"
+
+need to figure out how to have computer remember my ssl key thingy so I don't have to keep logging in.
