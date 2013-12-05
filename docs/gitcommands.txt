@@ -1,0 +1,13 @@
+first time on new computer need to set up a couple of global variables
+
+then you need to clone the repo "git clone url"
+
+then you can go into it and type "git status" to see if it's all good
+
+then you add new files, and add them "git add ."
+
+then you commit to local, 'git commit -m "add comment"'
+
+then you push to server, "git push", and you'll be prompted to login
+
+then you can pull down changes, "git pull"
