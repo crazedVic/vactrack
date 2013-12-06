@@ -9,5 +9,7 @@ To get the ember stuff working:
 You will need to run "npm install" in the ember folder, to grab all the grunt libraries.
 You will need to run "bower update" in the ember folder, to get all the web libraries installed.
 
-Then to test run "grunt" in the ember folder.  You can leave this running/watching as needed.
+Then to test run "grunt --force" in the ember folder.  You can leave this running/watching as needed.
+
+You need to include --force because grunt will be modifying files one level up.
 
