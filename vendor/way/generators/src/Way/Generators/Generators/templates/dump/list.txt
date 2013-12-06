@@ -6,7 +6,6 @@
 		<li>
 			{{=<% %>=}}
 			{{ Form::submit() }}
-			{{ link_to_route() }}
 		</li>
 	</ul>
 {{ Form::close() }}

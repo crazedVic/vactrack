@@ -4,6 +4,5 @@
 {{=<% %>=}}
 	<<%element%>>
 		{{ Form::submit() }}
-		{{ link_to_route() }}
 	</<%element%>>
 {{ Form::close() }}
