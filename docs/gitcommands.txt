@@ -10,6 +10,8 @@ then you add new files, and add them "git add ."
 
 or to add new files and remove all deleted ones "git add -A ."
 
+to commit empty folders, create a .gitkeep empty file in any folder you need.
+
 then you commit to local, 'git commit -m "add comment"'
 
 then you push to server, "git push", and you'll be prompted to login
