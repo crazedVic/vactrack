@@ -1,25 +1,12 @@
 {
   "name": "temp",
   "version": "0.0.0",
-  "homepage": "https://github.com/temp",
-  "description": "A boiler plate for writing web apps using Laravel and Ember",
-  "keywords": [
-    "laravel",
-    "emberjs"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
   "dependencies": {
-    "jquery": "~2.0.3",
-    "ember": "~1.0.0",
-    "ember-data": "~1.0.0-beta.2",
-    "bootstrap": "~3.0.0",
-    "ember-data-shim": "1.0.0-beta.2"
+    "ember": "1.0.0",
+    "ember-data-shim": "1.0.0-beta.2",
+    "bootstrap-sass": "~3.0.0"
+  },
+  "devDependencies": {
+    "ember-mocha-adapter": "0.1.2"
   }
 }

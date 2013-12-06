@@ -1,130 +1,337 @@
-  
-  var yeomanConfig = {
-    app: 'ember',
-    dist: 'dist'
+// Generated on 2013-12-06 using generator-ember 0.7.1
+'use strict';
+var LIVERELOAD_PORT = 35729;
+var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
+var mountFolder = function (connect, dir) {
+    return connect.static(require('path').resolve(dir));
 };
-module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-ember-templates');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
 
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// use this if you want to match all subfolders:
+// 'test/spec/**/*.js'
 
+module.exports = function (grunt) {
+    // show elapsed time at the end
+    require('time-grunt')(grunt);
+    // load all grunt tasks
+    require('load-grunt-tasks')(grunt);
 
-  grunt.initConfig({
-    clean: {
-      build: {
-        src: ["../public/js/builds/*.js","../public/css/builds/*.css"]
-      },
-      deploy: {
-        src: ["../public/js/builds/*.js","!../public/js/builds/build.min.js","../public/css/builds/*.css","!../public/css/builds/main.min.css"]
-      }
-    },
-    jshint: {
-        files: ['ember/**/*.js']
-    },
-    watch: {
-      libs: {
-        files: ['public_src/js/libs/**/*.js'],
-        tasks: ['concat:libs']
-      },
-      css: {
-        files: ['public/css/*.css','public_src/js/libs/**/*.css'],
-        tasks: ['concat:css']
-      },
-      templates: {
-        files: ['ember/templates/*.hbs','ember/templates/**/*.hbs'],
-        tasks: ['emberTemplates']
-      },
-      app: {
-        files: ['ember/*.js','ember/**/*.js'],
-        tasks: ['concat:app']
-      }
-    },
-    connect: {
-      server: {
-        port: 8000,
-        base: 'public',
-        keepalive: true
-      }
-    },
-    concat: {
-      app: {
-        src: [
-          'ember/app.js',
-          'ember/models/*.js',
-          'ember/routes.js',
-          'ember/routes/*.js',
-          'ember/controllers/*.js',
-          'ember/views/*.js'
-        ],
-        dest: '../public/js/builds/app.js', //modified
-        options: {
-          separator: ';',
-        }
-      },
-      libs: {
-        src: [
-              'public_src/js/libs/jquery/jquery.js',
-              'public_src/js/libs/handlebars/handlebars.js',
-              'public_src/js/libs/ember/ember.js',
-              'public_src/js/libs/ember-data-shim/ember-data.js',
-              'public_src/js/libs/bootstrap/dist/js/bootstrap.js'],
-        dest: '../public/js/builds/libs.js', //modified
-        options: {
-          separator: ';',
-        }
-      },
-      css: {
-        src: ['public_src/js/libs/bootstrap/dist/css/bootstrap.css','../public/css/style.css'],
-        dest: '../public/css/builds/main.css' //modified
-      },
-      deploy: {
-        src: ['../public/js/builds/libs.js', '../public/js/builds/templates.js','../public/js/builds/app.js'],
-        dest: '../public/js/builds/build.js', //modified
-        options: {
-          separator: ';',
-        }
-      }
-    },
-    uglify: {
-      js: {
-        src: '../public/js/builds/build.js',
-        dest: '../public/js/builds/build.min.js' //modified
-      },
-    },
-    shell: {
-        serve: {
-            command: 'php artisan serve && echo "hey"'
-        }
-    },
-    emberTemplates: {
-      compile: {
-        options: {
-          templateBasePath: "ember/templates/"
+    // configurable paths
+    var yeomanConfig = {
+        app: 'app',
+        dist: '../public'
+    };
+
+    grunt.initConfig({
+        yeoman: yeomanConfig,
+        watch: {
+            emberTemplates: {
+                files: '<%= yeoman.app %>/templates/**/*.hbs',
+                tasks: ['emberTemplates']
+            },
+            compass: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                tasks: ['compass:server']
+            },
+            neuter: {
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                tasks: ['neuter']
+            },
+            livereload: {
+                options: {
+                    livereload: LIVERELOAD_PORT
+                },
+                files: [
+                    '.tmp/scripts/*.js',
+                    '<%= yeoman.app %>/*.html',
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
+            }
         },
-        files: {
-        "../public/js/builds/templates.js": ["ember/templates/*.hbs", "ember/templates/**/*.hbs"]
+        connect: {
+            options: {
+                port: 9000,
+                // change this to '0.0.0.0' to access the server from outside
+                hostname: 'localhost'
+            },
+            livereload: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            lrSnippet,
+                            mountFolder(connect, '.tmp'),
+                            mountFolder(connect, yeomanConfig.app)
+                        ];
+                    }
+                }
+            },
+            test: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, '.tmp'),
+                            mountFolder(connect, 'test')
+                        ];
+                    }
+                }
+            },
+            dist: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            mountFolder(connect, yeomanConfig.dist)
+                        ];
+                    }
+                }
+            }
+        },
+        open: {
+            server: {
+                path: 'http://localhost:<%= connect.options.port %>'
+            }
+        },
+        clean: {
+            dist: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.tmp',
+                        '<%= yeoman.dist %>/*',
+                        '!<%= yeoman.dist %>/.git*'
+                    ]
+                }]
+            },
+            server: '.tmp'
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            all: [
+                'Gruntfile.js',
+                '<%= yeoman.app %>/scripts/{,*/}*.js',
+                '!<%= yeoman.app %>/scripts/vendor/*',
+                'test/spec/{,*/}*.js'
+            ]
+        },
+        mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                }
+            }
+        },
+        compass: {
+            options: {
+                sassDir: '<%= yeoman.app %>/styles',
+                cssDir: '.tmp/styles',
+                generatedImagesDir: '.tmp/images/generated',
+                imagesDir: '<%= yeoman.app %>/images',
+                javascriptsDir: '<%= yeoman.app %>/scripts',
+                fontsDir: '<%= yeoman.app %>/styles/fonts',
+                importPath: 'app/bower_components',
+                httpImagesPath: '/images',
+                httpGeneratedImagesPath: '/images/generated',
+                httpFontsPath: '/styles/fonts',
+                relativeAssets: false
+            },
+            dist: {},
+            server: {
+                options: {
+                    debugInfo: true
+                }
+            }
+        },
+        // not used since Uglify task does concat,
+        // but still available if needed
+        /*concat: {
+            dist: {}
+        },*/
+        // not enabled since usemin task does concat and uglify
+        // check index.html to edit your build targets
+        // enable this task if you prefer defining your build targets here
+        /*uglify: {
+            dist: {}
+        },*/
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%= yeoman.dist %>/styles/{,*/}*.css',
+                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+                        '<%= yeoman.dist %>/styles/fonts/*'
+                    ]
+                }
+            }
+        },
+        useminPrepare: {
+            html: '<%= yeoman.app %>/index.html',
+            options: {
+                dest: '<%= yeoman.dist %>'
+            }
+        },
+        usemin: {
+            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+            options: {
+                dirs: ['<%= yeoman.dist %>']
+            }
+        },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/images',
+                    src: '{,*/}*.{png,jpg,jpeg}',
+                    dest: '<%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        svgmin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/images',
+                    src: '{,*/}*.svg',
+                    dest: '<%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        cssmin: {
+            dist: {
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css': [
+                        '.tmp/styles/{,*/}*.css',
+                        '<%= yeoman.app %>/styles/{,*/}*.css'
+                    ]
+                }
+            }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    /*removeCommentsFromCDATA: true,
+                    // https://github.com/yeoman/grunt-usemin/issues/44
+                    //collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true*/
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: '*.html',
+                    dest: '<%= yeoman.dist %>'
+                }]
+            }
+        },
+        // Put files not handled in other tasks here
+        copy: {
+            dist: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>',
+                    dest: '<%= yeoman.dist %>',
+                    src: [
+                        '*.{ico,txt}',
+                        '.htaccess',
+                        'images/{,*/}*.{webp,gif}',
+                        'styles/fonts/*'
+                    ]
+                }]
+            }
+        },
+        concurrent: {
+            server: [
+                'emberTemplates',
+                'compass:server'
+            ],
+            test: [
+                'emberTemplates',
+                'compass'
+            ],
+            dist: [
+                'emberTemplates',
+                'compass:dist',
+                'imagemin',
+                'svgmin',
+                'htmlmin'
+            ]
+        },
+        emberTemplates: {
+            options: {
+                templateName: function (sourceFile) {
+                    var templatePath = yeomanConfig.app + '/templates/';
+                    return sourceFile.replace(templatePath, '');
+                }
+            },
+            dist: {
+                files: {
+                    '.tmp/scripts/compiled-templates.js': '<%= yeoman.app %>/templates/{,*/}*.hbs'
+                }
+            }
+        },
+        neuter: {
+            app: {
+                options: {
+                    filepathTransform: function (filepath) {
+                        return 'app/' + filepath;
+                    }
+                },
+                src: '<%= yeoman.app %>/scripts/app.js',
+                dest: '.tmp/scripts/combined-scripts.js'
+            }
         }
-      }
-},
-cssmin: {
-  minify: {
-    src: '../public/css/builds/main.css',
-    dest: '../public/css/builds/main.min.css', //modified
-  }
-}
-  });
-grunt.event.on('watch', function(action, filepath, target) {
-  grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
-});
-grunt.registerTask('serve',['shell:serve']);
-grunt.registerTask('build',['jshint','clean:build','emberTemplates','concat']);
-grunt.registerTask('default', ['build','watch']);
-grunt.registerTask('deploy', ['concat:deploy','uglify','cssmin','clean:deploy']);
+    });
+
+    grunt.registerTask('server', function (target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+        }
+
+        grunt.task.run([
+            'clean:server',
+            'concurrent:server',
+            'neuter:app',
+            'connect:livereload',
+            'open',
+            'watch'
+        ]);
+    });
+
+    grunt.registerTask('test', [
+        'clean:server',
+        'concurrent:test',
+        'connect:test',
+        'neuter:app',
+        'mocha'
+    ]);
+
+    grunt.registerTask('build', [
+        'clean:dist',
+        'useminPrepare',
+        'concurrent:dist',
+        'neuter:app',
+        'concat',
+        'cssmin',
+        'uglify',
+        'copy',
+        'rev',
+        'usemin'
+    ]);
+
+    grunt.registerTask('default', [
+        'jshint',
+        'test',
+        'build'
+    ]);
 };

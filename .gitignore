@@ -1,9 +1,12 @@
 /bootstrap/compiled.php
 /public/phpmyadmin/
-/public/js/builds/libs.js
-/public/js/builds/app.js
-/ember/public_src/js/libs
+
+/ember/app/bower_components
 /ember/node_modules
+/ember/temp
+/ember/.sass-cache
+/ember/.tmp
+
 # assuming the root folder you want to ignore is 'application'
 vendor/*
 # the subfolder(s) you want to track:
