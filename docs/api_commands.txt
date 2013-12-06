@@ -1,4 +1,4 @@
-Try to design my REST API here.
+REST API Specification for Vacation Tracker.
 
 will have 2 entry points - all and admin
 
