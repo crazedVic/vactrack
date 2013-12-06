@@ -1,3 +1,3 @@
-Temp.Router.map(function () {
+Ember.Router.map(function () {
   
 });

@@ -1,2 +1,2 @@
-Temp.Store = DS.Store.extend();
-Temp.ApplicationAdapter = DS.FixtureAdapter;
+EmberApp.Store = DS.Store.extend();
+EmberApp.ApplicationAdapter = DS.FixtureAdapter;
