@@ -15,3 +15,13 @@ then you push to server, "git push", and you'll be prompted to login
 then you can pull down changes, "git pull"
 
 need to figure out how to have computer remember my ssl key thingy so I don't have to keep logging in.
+
+switch repo to use ssh key:
+
+git remote set-url origin git@github.com:crazedVic/vactrack.git
+
+to clone using ssh:
+
+git clone git@github.com:username/reponame
+
+git@github.com:crazedVic/vactrack.git
