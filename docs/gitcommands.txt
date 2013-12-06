@@ -8,6 +8,8 @@ looks like "git status" doesn't detect changed files on the server, not sure how
 
 then you add new files, and add them "git add ."
 
+or to add new files and remove all deleted ones "git add -A ."
+
 then you commit to local, 'git commit -m "add comment"'
 
 then you push to server, "git push", and you'll be prompted to login
